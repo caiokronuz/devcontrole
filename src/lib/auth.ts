@@ -20,4 +20,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         },
       })
   ],
+  callbacks:{
+    async session({session, token, user}){
+      session.user = {...session.user, id: user.id} as {
+        id: string,
+        name: string,
+        email: string,
+        emailVerified: Date;
+      }
+
+      console.log(session.user);
+
+      return session;
+
+    }
+  }
 })
