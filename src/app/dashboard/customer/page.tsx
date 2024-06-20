@@ -1,10 +1,23 @@
 import Link from "next/link"
+import {prisma} from '@/lib/auth'
+import {auth} from '@/lib/auth'
 
 import { CustomerCard } from "./components/card"
 
 import { Container } from "@/components/container"
 
-export default function Customer(){
+export default async function Customer(){
+
+    const session = await auth();
+
+    const customers = await prisma.customer.findMany({
+        where:{
+            userId: session?.user?.id,
+        }
+    })
+
+    console.log(customers)
+
     return(
         <Container>
             <main className="mt-9 mb-2">
@@ -16,9 +29,9 @@ export default function Customer(){
                 </div>
                 
                 <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-2">
-                    <CustomerCard />
-                    <CustomerCard />
-                    <CustomerCard />
+                   {customers.map(customer => (
+                     <CustomerCard key={customer.id} customer={customer}/>
+                   ))}
                 </section>
 
             </main>

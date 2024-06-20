@@ -39,6 +39,7 @@ export function NewCustomerForm() {
             return;
        }
 
+       router.refresh();
        router.replace('/dashboard/customer')
     }
 
