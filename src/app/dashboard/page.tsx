@@ -2,8 +2,24 @@ import Link from "next/link"
 
 import { Container } from "@/components/container"
 import { TicketItem } from "./components/ticket"
+import {auth, prisma} from "@/lib/auth";
 
 export default async function Dashboard() {
+
+    const session = await auth();
+
+    const tickets = await prisma.ticket.findMany({
+        where:{
+            userId: session?.user.id,
+            status: "Aberto",
+        },
+        include: {
+            customer: true,
+        }
+    })
+
+    console.log(tickets)
+
     return (
         <Container>
             <main className="mt-9 mb-2">
@@ -24,10 +40,9 @@ export default async function Dashboard() {
                         </tr>
                     </thead>
                     <tbody>
-                         <TicketItem/>
-                         <TicketItem/>
-                         <TicketItem/>
-                         <TicketItem/>
+                         {tickets.map(ticket => (
+                            <TicketItem ticket={ticket} key={ticket.id}/>
+                         ))}
                     </tbody>
                 </table>
             </main>

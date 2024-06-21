@@ -16,8 +16,6 @@ export default async function Customer(){
         }
     })
 
-    console.log(customers)
-
     return(
         <Container>
             <main className="mt-9 mb-2">
@@ -33,6 +31,10 @@ export default async function Customer(){
                      <CustomerCard key={customer.id} customer={customer}/>
                    ))}
                 </section>
+
+                {customers.length === 0 && (
+                    <h1 className="text-gray-600">Você ainda não possui nenhum cliente.</h1>
+                )}
 
             </main>
         </Container>

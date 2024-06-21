@@ -5,6 +5,6 @@ export interface CustomerProps {
     email: string;
     address: string | null;
     created_at: Date | null;
-    updatedat: Date | null;
+    updated_at: Date | null;
     userId: string | null;
 }
