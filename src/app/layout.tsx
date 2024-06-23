@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { Header } from "@/components/header";
-import {Providers} from "@/components/providers";
+import {AuthProvider} from "@/providers/auth";
+import {ModalProvider} from "@/providers/modal"
 
 import "./globals.css";
 
@@ -21,10 +22,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-        <Providers>
-          <Header />
-          {children}
-        </Providers>
+        <AuthProvider>
+          <ModalProvider>
+            <Header />
+            {children}
+          </ModalProvider>
+        </AuthProvider>
       </body>
     </html>
   );
