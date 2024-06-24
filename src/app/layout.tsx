@@ -14,11 +14,15 @@ export const metadata: Metadata = {
   description: "Gerencie seus clientes e atendimentos de forma fácil.",
 };
 
+interface LayoutProps{
+  children: React.ReactNode;
+  types: string;
+}
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  types
+}: Readonly<LayoutProps>) {
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
