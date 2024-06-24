@@ -1,5 +1,3 @@
-import { CustomerProps } from "./customer.types";
-
 export interface TicketProps{
     id: string;
     name: string;
@@ -7,7 +5,6 @@ export interface TicketProps{
     status: string;
     created_at: Date | null;
     updated_at: Date | null;
-    customerId: string;
-    userId: string | null;
-    customer: CustomerProps | null;
+    customerId: string | null;
+    userId: string |  null;
 }

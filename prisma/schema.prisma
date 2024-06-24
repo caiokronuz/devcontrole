@@ -32,7 +32,7 @@ model Customer {
   email String
   address String?
   created_at DateTime? @default(now())
-  updatedat DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   userId String? @db.ObjectId
   User User? @relation(fields: [userId], references: [id])
@@ -47,7 +47,7 @@ model Ticket{
   description String
   status String
   created_at DateTime? @default(now())
-  updatedat DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   customerId String? @db.ObjectId
   customer Customer? @relation(fields: [customerId], references: [id])

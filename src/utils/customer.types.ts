@@ -1,4 +1,4 @@
-export interface CustomerProps {
+export interface CustomerProps{
     id: string;
     name: string;
     phone: string;
@@ -8,3 +8,4 @@ export interface CustomerProps {
     updated_at: Date | null;
     userId: string | null;
 }
+

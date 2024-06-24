@@ -15,10 +15,11 @@ export default async function Dashboard() {
         },
         include: {
             customer: true,
+        },
+        orderBy:{
+            created_at: "asc"
         }
     })
-
-    console.log(tickets)
 
     return (
         <Container>
@@ -41,7 +42,7 @@ export default async function Dashboard() {
                     </thead>
                     <tbody>
                          {tickets.map(ticket => (
-                            <TicketItem ticket={ticket} key={ticket.id}/>
+                            <TicketItem customer={ticket.customer} ticket={ticket} key={ticket.id}/>
                          ))}
                     </tbody>
                 </table>
