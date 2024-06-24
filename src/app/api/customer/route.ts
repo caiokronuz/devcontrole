@@ -3,6 +3,28 @@ import { auth } from '@/lib/auth';
 
 import {prisma} from '@/lib/auth';
 
+export async function GET(request: Request){
+    const {searchParams} = new URL(request.url)
+    const customerEmail = searchParams.get("email")
+
+    if(!customerEmail || customerEmail === ""){
+        return NextResponse.json({error: "Customer not found"}, {status:400})
+    }
+
+    try{
+        const customer = await prisma.customer.findFirst({
+            where:{
+                email: customerEmail,
+            }
+        })
+
+        return NextResponse.json(customer)
+    }catch(err){
+        return NextResponse.json({error: "Customer not found"}, {status:400})
+    }
+
+}
+
 export async function DELETE(request: Request){
 
     const session = await auth();
