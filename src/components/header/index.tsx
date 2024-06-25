@@ -32,8 +32,9 @@ export function Header() {
                 )}
 
                 {status == "unauthenticated" && (
-                    <button onClick={handleLogin}>
+                    <button onClick={handleLogin} className="flex items-center justify-center gap-2">
                         <FiLock size={26} color="#4b5563" />
+                        Login
                     </button>
                 )}
 
